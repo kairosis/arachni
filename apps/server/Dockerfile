@@ -3,10 +3,11 @@ RUN corepack enable && corepack prepare pnpm@9 --activate
 
 FROM base AS deps
 WORKDIR /app
-COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json .npmrc ./
 COPY packages/neo4j/package.json ./packages/neo4j/
 COPY apps/server/package.json ./apps/server/
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=secret,id=NODE_AUTH_TOKEN \
+    NODE_AUTH_TOKEN=$(cat /run/secrets/NODE_AUTH_TOKEN) pnpm install --frozen-lockfile
 
 FROM base AS builder
 WORKDIR /app

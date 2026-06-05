@@ -1,0 +1,25 @@
+{
+  "name": "@arachni/web",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p ${WEB_PORT:-3101}",
+    "build": "next build",
+    "start": "next start -p ${WEB_PORT:-3101}",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@arachni/neo4j": "workspace:*",
+    "neo4j-driver": "^5.26.0",
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.5.0"
+  }
+}

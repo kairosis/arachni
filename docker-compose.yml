@@ -1,0 +1,24 @@
+services:
+  server:
+    build:
+      context: .
+      dockerfile: apps/server/Dockerfile
+    image: arachni-server
+    ports:
+      - "${SERVER_PORT:-3000}:3000"
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    image: arachni-web
+    ports:
+      - "${WEB_PORT:-3001}:3001"
+    env_file:
+      - .env
+    depends_on:
+      - server
+    restart: unless-stopped

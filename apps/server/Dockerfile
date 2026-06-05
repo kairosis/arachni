@@ -3,7 +3,7 @@ RUN corepack enable && corepack prepare pnpm@9 --activate
 
 FROM base AS deps
 WORKDIR /app
-COPY pnpm-workspace.yaml package.json ./
+COPY pnpm-workspace.yaml pnpm-lock.yaml package.json ./
 COPY packages/neo4j/package.json ./packages/neo4j/
 COPY apps/server/package.json ./apps/server/
 RUN pnpm install --frozen-lockfile
